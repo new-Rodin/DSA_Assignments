@@ -17,8 +17,13 @@ However, this program explores a different solution. To do this we convert the n
 ### Execution
 To run the main script, navigate to the project's root directory and use the following command:
 - First, ensure your package manager's lists are up to date.
+- Open the command prompt and use:
 
 ```bash
 make
-./prg1
+./palindrome
 ```
+
+## Author
+Shafqat Jabbar
+240150019
