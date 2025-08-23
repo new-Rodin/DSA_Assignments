@@ -1,27 +1,27 @@
-# Defining variables
-CXX = g++ #Compiler to use
-CXXFLAGS = -Wall -g #Flags
-TARGETS = palindrome matrix #Name of final executable file
+# Makefile for compiling the linked list implementations
+CXX = g++ # Compiler to use
+CXXFLAGS = -Wall -Wextra -g # Flags for the compiler -Wextra is added to catch more warnings
+TARGETS = SingleLL DoubleLL CircularLL # Name of final executable files
 
-#The 'all' Rule 
-all: $(TARGETS) #This is what happens when we just type make
+all:$(TARGETS)
 
-#To link the object files into the final executable file
-palindrome: palindr.o
-		$(CXX) $(CXXFLAGS) -o palindrome palindr.o
-matrix: matrix.o
-		$(CXX) $(CXXFLAGS) -o matrix matrix.o
+SingleLL: SingleLL.o
+	$(CXX) $(CXXFLAGS) -o SingleLL SingleLL.o
+DoubleLL: DoubleLL.o
+	$(CXX) $(CXXFLAGS) -o DoubleLL DoubleLL.o
+CircularLL: CircularLL.o
+	$(CXX) $(CXXFLAGS) -o CircularLL CircularLL.o
 
-#To compile source files into object files
-palindr.o: palindr.cpp
-		$(CXX) $(CXXFLAGS) -c palindr.cpp
-matrix.o: matrix.cpp
-		$(CXX) $(CXXFLAGS) -c matrix.cpp
-#For cleaning the executable file
+SingleLL.o: SingleLL.cpp
+	$(CXX) $(CXXFLAGS) -c SingleLL.cpp
+DoubleLL.o: DoubleLL.cpp
+	$(CXX) $(CXXFLAGS) -c DoubleLL.cpp
+CircularLL.o: CircularLL.cpp
+	$(CXX) $(CXXFLAGS) -c CircularLL.cpp
+# For cleaning the executable files and object files
 clean:
 	rm -f *.o $(TARGETS)
-
-#To tell the make that 'all' and 'clean' are not actual files
+# To tell make that 'all' and 'clean' are not actual files
 .PHONY: all clean
 
 # Explanation of the flags used:
