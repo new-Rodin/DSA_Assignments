@@ -86,4 +86,26 @@ This folder contains simplified, non-interactive programs that demonstrate a cle
 * **Overview:** This example demonstrates how a circular linked list can manage turns in a multiplayer game.
 * **How it Works:** Each player is a node in the list. After the last player takes their turn, the list naturally loops back to the first player. This creates a continuous, fair cycle of turns that is ideal for round-robin scenarios. The program simulates several rounds of a game, showing how the turn passes from player to player in a circle.
 
+## Performance Comparison: Custom vs. STL
+
+A benchmark was performed to compare the speed of the custom linked list implementations against the highly optimized C++ Standard Template Library (STL) containers. The test measured the time taken to insert 50,000 elements at the end of a list.
+
+### The Bottleneck: Inefficient Insertion
+The initial custom `insertend` function was extremely slow. This is because for every new item added, the code had to walk the entire list from the very beginning (`head`) just to find the end.
+
+* **Complexity:** This approach has a time complexity of **O(N²)**. It's like adding a new car to a very long train by walking from the engine to the back *every single time*. As the train gets longer, the walk takes longer.
+
+### The Optimized Approach: A Fairer Fight
+The STL's `push_back` function is incredibly fast. This is because it always keeps a pointer to the last element, so it can add a new element in a single step (**O(1)**).
+
+To make a fair comparison, the custom list was improved by adding a `tail` pointer. This also makes its `insertend` operation **O(1)**, and its performance becomes just as fast as the STL version.
+
+### Summary Table: Custom vs. STL
+
+| Feature | Custom Implementation | STL Implementation (`std::list`, etc.) |
+| :--- | :--- | :--- |
+| **Memory Management** | **Manual and Error-Prone.** You must manually use `new` and `delete`. Forgetting to `delete` causes memory leaks. | **Automatic and Safe.** The STL container automatically manages memory. When the list goes out of scope, it frees all memory. |
+| **Ease of Use** | **Verbose and Complex.** Requires direct pointer manipulation (`p->next`, etc.), which is hard to read and easy to get wrong. | **High-Level and Readable.** Operations are clear and concise (`myList.push_back(value)`). Easy to use with modern `for` loops. |
+| **Features & Algorithms** | **Barebones.** Every operation (sorting, reversing, finding an element) must be written by hand. | **Rich and Powerful.** Comes with many built-in functions (`.sort()`, `.reverse()`) and works with the C++ `<algorithm>` library. |
+
 ```
