@@ -102,7 +102,19 @@ NODEPTR nodeat(NODEPTR list, int index) // Return the node at the i-th index
 
 NODEPTR reverse(NODEPTR list)
 {
- return NULL;
+    NODEPTR q = new node();
+    NODEPTR rev = new node();
+    q = list;
+    rev = NULL; // rev is the head pointer of the reversed list
+    while (q != NULL)
+    {
+        NODEPTR temp = new node();
+        temp->info = q->info;
+        temp->next = rev;
+        rev = temp;
+        q = q->next;
+    }
+    return rev; // Returning the head pointer of the reversed list   
 }
 
 void display(NODEPTR list)
@@ -142,8 +154,7 @@ int main()
     cout << "The List is:" << endl;
     display(list);
 
-    cout << "What actions do you want to perform?" << endl
-         << "Enter 1 for deletion , 2 for inserting a node after a particular index, 3 for searching the list , 4 to know the value of a node at index i" << endl;
+    cout << "What actions do you want to perform?" << endl << "Enter 1 for deletion , 2 for inserting a node after a particular index, 3 for searching the list , 4 to know the value of a node at index i, 5 to get the reverse of th elist" << endl;
     int choice;
     cin >> choice;
     if (choice == 1)
@@ -199,6 +210,12 @@ int main()
         else
             cout << key->info << endl; // If the index is found, we print the value
     }
+    else if( choice == 5)
+    {
+        NODEPTR rev = reverse(list);
+        cout << "The reversed list is:" << endl;
+        display(rev);
+    }   
     else
     {
         cout << "Invalid choice" << endl;

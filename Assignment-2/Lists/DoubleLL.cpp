@@ -1,4 +1,4 @@
-// This is for the Double Linked List implementation with all the operations like insertion, deletion, searching and displaying the list
+// This is for the Double Linked List implementation with all the operations like insertion, deletion, searching,reversal and displaying the list
 #include<iostream>
 using namespace std;
 struct node{
@@ -10,10 +10,11 @@ typedef struct node* NODEPTR;
 void insertatend(NODEPTR list ,int x )
 {
     NODEPTR q = new node();
-    list->next = q; // This line is also very important as it connects the Linked list to the new freshly made pointer
+    list->next = q; // This line is very important as it connects the Linked list to the new freshly made pointer
     q->info = x;
     q-> next = NULL;
-    q-> prev = list; // This is important to connect the previous pointer of the new node to the last node
+    q-> prev = list; // This is also important to connect the previous pointer of the new node to the last node
+    
 }
 void insertafter(NODEPTR p,int x)
 {
@@ -125,9 +126,8 @@ NODEPTR nodeat(NODEPTR list, int index) // Return the node at the i-th index
 
 NODEPTR reverse(NODEPTR list)
 {
-    if(list==NULL)
-    return NULL;
-    NODEPTR rev = new node();
+    if(list==NULL)  return NULL;
+    NODEPTR rev;
     NODEPTR temp = new node();
     NODEPTR nextptr;
     NODEPTR p = list;
@@ -135,17 +135,17 @@ NODEPTR reverse(NODEPTR list)
     {
         p=p->next;
     }
-    temp = p;
+    temp->info = p->info;
+    temp->prev = NULL;
     rev = temp;
-    while(p->prev!=NULL) //Untill we get to the first node
+    while(p->prev!=NULL) 
     {
         nextptr = new node();
-        nextptr = p->prev;
-        temp->next = nextptr;
-        nextptr ->prev = temp;
-        nextptr ->next = NULL;
-        temp = temp -> next;
         p = p->prev;
+        nextptr->info = p->info;
+        nextptr->prev = temp;
+        temp->next = nextptr;
+        temp = nextptr;
     }
     return rev;
 }
@@ -165,10 +165,9 @@ int main()
 {
     cout << "Enter a series of Numbers, Enter -1 to stop" << endl;
     int a;
-    NODEPTR list = new node();
+    NODEPTR list;
     NODEPTR p = new node(); // Initialization of p is important
-    list = p;               // Attaching the list pointer to the first node
-
+    list = p; // Attaching the list pointer to the first node
     while (true)
     {
         cin >> a;
@@ -182,12 +181,76 @@ int main()
             break;
         }
     }
-
     list = list->next; // This is important as the first pointer does not contain any numerical value and just containts the adress to the first pointer.
-
+    list ->prev = NULL; // This is to make sure there's no void pointer at the beginning
     cout << "The List is:" << endl;
     display(list);
-    NODEPTR reversed_list = reverse(list);
-    cout<<"The Reversed list is:"<<endl;
-    display(reversed_list);
+
+    cout << "What actions do you wish to perform?" << endl << "Enter 1 for deletion , 2 for inserting a node after a particular index, 3 for searching the list , 4 to know the value of a node at index i, 5 to reverse the list" << endl;
+    int choice;
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        cout << "Enter the value to be deleted" << endl;
+        int del;
+        cin >> del;
+        deletenode(list, del);
+        cout << "The List after deletion is:" << endl;
+        display(list);
+    }
+    else if (choice == 2)
+    {
+        int index, ins;
+        cout << "Enter the index after which you want to insert a new node" << endl;
+        cin >> index;
+        NODEPTR key = nodeat(list, index);
+        if (key == NULL)
+        {
+            cout << "Index not found" << endl;
+            return 0; // If the index is not found, we return
+        }
+        cout << "Enter the value to be inserted" << endl;
+        cin >> ins;
+        insertafter(key, ins);
+        cout << "The List after insertion is:" << endl;
+        display(list);
+    }
+    else if (choice == 3)
+    {
+        int value;
+        cout << "Enter the value to be searched" << endl;
+        cin >> value;
+        int index = search(list, value);
+        if (index == -1)
+        {
+            cout << "Value not found in the list" << endl;
+        }
+        else
+        {
+            cout << "Value found at index " << index << endl;
+        }
+    }
+    else if (choice == 4)
+    {
+        int index;
+        cout << "Enter the index of the node you want to know the value of" << endl;
+        cin >> index;
+        NODEPTR key = nodeat(list, index);
+        cout << "The value at index " << index << " is ";
+        if (key == NULL)
+            cout << "not found" << endl; // If the index is not found, we return
+        else
+            cout << key->info << endl; // If the index is found, we print the value
+    }
+    else if(choice == 5)
+    {
+        NODEPTR rev = reverse(list);
+        cout<<"The reversed list is:"<<endl;
+        display(rev);
+    }
+    else
+    {
+        cout << "Invalid choice" << endl;
+    }
 }
