@@ -7,28 +7,6 @@ This project contains the C++ implementations for three fundamental types of lin
 ## File Structure
 
 The project is organized into two main folders: `lists` for the core data structure implementations and `examples` for their practical applications.
-/
-├── lists/
-│   ├── SingleLL.cpp
-│   ├── DoubleLL.cpp
-│   └── CircularLL.cpp
-└── examples/
-├── MusicPlaylist.cpp
-├── BrowserHistory.cpp
-└── GameTurns.cpp
-
-Of course. Here is the entire `README.md` file consolidated into a single block. You can copy and paste the content directly from the box below into a file named `README.md`.
-
-```markdown
-# Linked List Implementations and Examples
-
-This project contains the C++ implementations for three fundamental types of linked lists: **Singly**, **Doubly**, and **Circular**. It also includes practical examples for each type to demonstrate their real-world use cases. The code is written as an interactive command-line interface.
-
----
-
-## File Structure
-
-The project is organized into two main folders: `lists` for the core data structure implementations and `examples` for their practical applications.
 
 ```
 
@@ -107,5 +85,3 @@ To make a fair comparison, the custom list was improved by adding a `tail` point
 | **Memory Management** | **Manual and Error-Prone.** You must manually use `new` and `delete`. Forgetting to `delete` causes memory leaks. | **Automatic and Safe.** The STL container automatically manages memory. When the list goes out of scope, it frees all memory. |
 | **Ease of Use** | **Verbose and Complex.** Requires direct pointer manipulation (`p->next`, etc.), which is hard to read and easy to get wrong. | **High-Level and Readable.** Operations are clear and concise (`myList.push_back(value)`). Easy to use with modern `for` loops. |
 | **Features & Algorithms** | **Barebones.** Every operation (sorting, reversing, finding an element) must be written by hand. | **Rich and Powerful.** Comes with many built-in functions (`.sort()`, `.reverse()`) and works with the C++ `<algorithm>` library. |
-
-```
