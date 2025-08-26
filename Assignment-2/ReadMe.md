@@ -85,3 +85,8 @@ To make a fair comparison, the custom list was improved by adding a `tail` point
 | **Memory Management** | **Manual and Error-Prone.** You must manually use `new` and `delete`. Forgetting to `delete` causes memory leaks. | **Automatic and Safe.** The STL container automatically manages memory. When the list goes out of scope, it frees all memory. |
 | **Ease of Use** | **Verbose and Complex.** Requires direct pointer manipulation (`p->next`, etc.), which is hard to read and easy to get wrong. | **High-Level and Readable.** Operations are clear and concise (`myList.push_back(value)`). Easy to use with modern `for` loops. |
 | **Features & Algorithms** | **Barebones.** Every operation (sorting, reversing, finding an element) must be written by hand. | **Rich and Powerful.** Comes with many built-in functions (`.sort()`, `.reverse()`) and works with the C++ `<algorithm>` library. |
+
+## Author
+
+- **Name:** Shafqat Jabbar
+- **Roll Number:** 240150019
