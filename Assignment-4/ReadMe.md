@@ -16,6 +16,7 @@ For parsing a Mathematical expression using BODMAS rule, we do the following:
 
 For verification we then print the postorder/inorder of the tree that is now containing the operators as the parent nodes and the operands/numbers as the leaf nodes.
 
+The last file comparison.cpp contains the comparison of the custom made tree to the STL's implementation.
 ## How to Run the Code
 
 ### Pre-requisites
