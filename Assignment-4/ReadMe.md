@@ -19,7 +19,7 @@ To run the main script, navigate to the project's root directory and use the fol
 
 ```bash
 make
-//Now select the program which you want to run
+./tree or ./BST or ./BodmasTree
 ```
 
 ## Author
