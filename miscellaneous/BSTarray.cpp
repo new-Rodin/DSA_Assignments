@@ -1,5 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
+int search(vector <int> v, int value)
+{
+    int i=0;
+    while(true)
+    {
+        if(value == v[i])
+        return i;
+        if(v[i]==-1)
+        return -1;
+        if(value<v[i])
+        i = i*2+1;
+        else
+        i = i*2+2;
+    }
+}
 int main()
 {
     int n,i,c=0;
@@ -30,6 +45,7 @@ int main()
     }
     c=0;
     i=0;
+    
     cout<<"The elements stored are:"<<endl;
     while(true)
     {
@@ -40,4 +56,14 @@ int main()
         c++;
         i++;
     }
+
+    cout<<"Enter the value to be searched:"<<endl;
+    int value;
+    cin>>value;
+    int index = search(a,value);
+    if(index == -1)
+    cout<<"The value is not present!"<<endl;
+    else
+    cout<<"The value is at index "<<index<<endl;
+
 }
