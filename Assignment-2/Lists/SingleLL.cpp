@@ -100,21 +100,37 @@ NODEPTR nodeat(NODEPTR list, int index) // Return the node at the i-th index
     return NULL; // If the index is not found, return NULL
 }
 
+// NODEPTR reverse(NODEPTR list)
+// {
+//     NODEPTR q = new node();
+//     NODEPTR rev = new node();
+//     q = list;
+//     rev = NULL; // rev is the head pointer of the reversed list
+//     while (q != NULL)
+//     {
+//         NODEPTR temp = new node();
+//         temp->info = q->info;
+//         temp->next = rev;
+//         rev = temp;
+//         q = q->next;
+//     }
+//     return rev; // Returning the head pointer of the reversed list   
+// }
 NODEPTR reverse(NODEPTR list)
 {
-    NODEPTR q = new node();
-    NODEPTR rev = new node();
-    q = list;
-    rev = NULL; // rev is the head pointer of the reversed list
-    while (q != NULL)
+    if(list == NULL)
+    return NULL;
+    NODEPTR root = list;
+    NODEPTR temp,rev;
+    temp = NULL;
+    while(root!=NULL)
     {
-        NODEPTR temp = new node();
-        temp->info = q->info;
-        temp->next = rev;
-        rev = temp;
-        q = q->next;
+        rev = root;
+        root = root->next;
+        rev->next = temp;
+        temp = rev;
     }
-    return rev; // Returning the head pointer of the reversed list   
+    return rev;
 }
 
 void display(NODEPTR list)

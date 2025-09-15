@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 int search(vector <int> v, int value)
 {
     int i=0;
@@ -45,7 +46,7 @@ int main()
     }
     c=0;
     i=0;
-    
+
     cout<<"The elements stored are:"<<endl;
     while(true)
     {
@@ -56,6 +57,7 @@ int main()
         c++;
         i++;
     }
+    cout<<endl;
 
     cout<<"Enter the value to be searched:"<<endl;
     int value;
@@ -65,5 +67,4 @@ int main()
     cout<<"The value is not present!"<<endl;
     else
     cout<<"The value is at index "<<index<<endl;
-
 }
